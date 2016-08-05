@@ -13,6 +13,11 @@ ELSE 'não'
 END AS fruta
 FROM alimentos a;
 
+select id_servidor_localizacao, id_localizacao, id_processo_avaliacao
+from nova_avaliacao.servidor_localizacao_processo_avaliacao loc1
+where 
+not exists (select 1 from dimensionamento.servidor_localizacao loc2 where loc2.id_localizacao = loc1.id_localizacao and loc2.id_processo_avaliacao = loc1.id_processo_avaliacao)
+
 --IN
 SELECT nome, CASE WHEN nome IN (SELECT nome FROM frutas)
 THEN 'sim'
@@ -74,4 +79,11 @@ COUNT(CASE WHEN nota BETWEEN 7.00 AND 8.99 THEN 1 ELSE NULL END) AS B,
 COUNT(CASE WHEN nota BETWEEN 5.00 AND 6.99 THEN 1 ELSE NULL END) AS C,
 COUNT(CASE WHEN nota BETWEEN 3.00 AND 4.99 THEN 1 ELSE NULL END) AS D,
 COUNT(CASE WHEN nota BETWEEN 0.00 AND 2.99 THEN 1 ELSE NULL END) AS E
+FROM notas;
+
+--Mostrar cada nota junto com a menor nota, a maior nota, e a média de todas as notas.
+SELECT nota,
+(SELECT MIN(nota) FROM notas) AS menor,
+(SELECT MAX(nota) FROM notas) AS maior,
+(SELECT AVG(nota) FROM notas) AS media
 FROM notas;
