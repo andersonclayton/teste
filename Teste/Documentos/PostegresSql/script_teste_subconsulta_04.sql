@@ -13,21 +13,6 @@ ELSE 'não'
 END AS fruta
 FROM alimentos a;
 
--- localizacoes que tem em Avaliação e não tem em dimensionamento
-select id_servidor_localizacao, id_localizacao, id_processo_avaliacao
-from nova_avaliacao.servidor_localizacao_processo_avaliacao loc1
-where not exists (select 1 from dimensionamento.servidor_localizacao loc2 
-		where loc2.id_localizacao = loc1.id_localizacao 
-		and loc2.id_processo_avaliacao = loc1.id_processo_avaliacao) 
-
--- localizacao alterada em Avaliacao
-select id_servidor_localizacao, id_localizacao, id_processo_avaliacao
-from nova_avaliacao.servidor_localizacao_processo_avaliacao loc1
-where not exists (select 1 from dimensionamento.servidor_localizacao loc2 
-		where loc2.id_localizacao = loc1.id_localizacao 
-		and loc2.id_processo_avaliacao = loc1.id_processo_avaliacao) 
-		AND loc2.id_localizacao <> loc1.id_localizacao
-
 --IN
 SELECT nome, CASE WHEN nome IN (SELECT nome FROM frutas)
 THEN 'sim'
