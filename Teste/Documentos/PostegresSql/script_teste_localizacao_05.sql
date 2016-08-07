@@ -43,3 +43,5 @@ where exists (select 1 from servidor_localizacao loc2
 		and loc2.id_processo_avaliacao = loc1.id_processo_avaliacao)
 		AND loc2.id_localizacao <> loc1.id_localizacao)
 order by 2,4,5
+
+
