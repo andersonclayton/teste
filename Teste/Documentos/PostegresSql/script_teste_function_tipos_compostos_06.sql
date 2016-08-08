@@ -3,10 +3,10 @@ dataatual DATE,
 horaatual time
 );
 
-insert into datas values ('2016-07-06', '08:00:00')
-insert into datas values ('1995-11-01', '10:00:00')
-insert into datas values ('U','1997-11-01','06:36')
-insert into datas values 'U','1997-11-01','06:36')
+insert into datas values ('2016-07-06', '08:00:00');
+insert into datas values ('1995-11-01', '10:00:00');
+insert into datas values ('1997-11-01','06:36');
+insert into datas values ('1997-11-01','06:36');
 
 select * from datas
 
@@ -34,7 +34,7 @@ END;
 $$
 LANGUAGE plpgsql;
 
-select data_ctl('I','1996-11-01', '13:13');
+select data_ctl('I','2014-07-15', '19:30:00');
 select data_ctl('I','2016-07-06', '09:00:00');
 select data_ctl('D','1997-11-01','06:36');
 select data_ctl('U','1997-11-01','06:36');
